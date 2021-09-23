@@ -39,6 +39,7 @@ if is_torch_available():
         "BertForQuestionAnswering",
         "BertForSequenceClassification",
         "BertForTokenClassification",
+        "BertForTokenClassificationWithPrefix",  # ADDED BY MOZHDEH
         "BertLayer",
         "BertLMHeadModel",
         "BertModel",
@@ -93,6 +94,7 @@ if TYPE_CHECKING:
             BertForQuestionAnswering,
             BertForSequenceClassification,
             BertForTokenClassification,
+            BertForTokenClassificationWithPrefix,  # ADDED BY MOZHDEH
             BertLayer,
             BertLMHeadModel,
             BertModel,

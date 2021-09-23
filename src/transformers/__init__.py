@@ -577,6 +577,7 @@ if is_torch_available():
             "BertForQuestionAnswering",
             "BertForSequenceClassification",
             "BertForTokenClassification",
+            "BertForTokenClassificationWithPrefix",  # ADDED BY MOZHDEH
             "BertLayer",
             "BertLMHeadModel",
             "BertModel",
@@ -2225,6 +2226,7 @@ if TYPE_CHECKING:
             BertForQuestionAnswering,
             BertForSequenceClassification,
             BertForTokenClassification,
+            BertForTokenClassificationWithPrefix,  # ADDED BY MOZHDEH
             BertLayer,
             BertLMHeadModel,
             BertModel,
@@ -3195,12 +3197,6 @@ if TYPE_CHECKING:
         )
         from .models.t5 import FlaxT5ForConditionalGeneration, FlaxT5Model, FlaxT5PreTrainedModel
         from .models.vit import FlaxViTForImageClassification, FlaxViTModel, FlaxViTPreTrainedModel
-        from .models.wav2vec2 import (
-            FlaxWav2Vec2ForCTC,
-            FlaxWav2Vec2ForPreTraining,
-            FlaxWav2Vec2Model,
-            FlaxWav2Vec2PreTrainedModel,
-        )
     else:
         # Import the same objects as dummies to get them in the namespace.
         # They will raise an import error if the user tries to instantiate / use them.

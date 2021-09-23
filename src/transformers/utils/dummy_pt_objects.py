@@ -681,6 +681,16 @@ class BertForTokenClassification:
         requires_backends(cls, ["torch"])
 
 
+# ADDED BY MOZHDEH
+class BertForTokenClassificationWithPrefix:
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["torch"])
+
+    @classmethod
+    def from_pretrained(cls, *args, **kwargs):
+        requires_backends(cls, ["torch"])
+
+
 class BertLayer:
     def __init__(self, *args, **kwargs):
         requires_backends(self, ["torch"])
