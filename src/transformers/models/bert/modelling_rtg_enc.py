@@ -181,7 +181,7 @@ class RTGEncStack(BertPreTrainedModel):
         )
 
 
-class BertForTokenClassification(BertPreTrainedModel):
+class RTGEncForTokenClassification(BertPreTrainedModel):
 
     _keys_to_ignore_on_load_unexpected = [r"pooler"]
 
@@ -189,7 +189,7 @@ class BertForTokenClassification(BertPreTrainedModel):
         super().__init__(config)
         self.num_labels = config.num_labels
 
-        self.bert = BertModel(config, add_pooling_layer=False)
+        self.rtg_enc = RTGEncStack(config, add_pooling_layer=False)
         classifier_dropout = (
             config.classifier_dropout if config.classifier_dropout is not None else config.hidden_dropout_prob
         )
@@ -218,7 +218,7 @@ class BertForTokenClassification(BertPreTrainedModel):
         """
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
 
-        outputs = self.bert(
+        outputs = self.rtg_enc(
             input_ids,
             attention_mask=attention_mask,
             token_type_ids=token_type_ids,
