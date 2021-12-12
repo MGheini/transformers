@@ -332,6 +332,7 @@ class RTGEncLayer(nn.Module):
         super().__init__()
         self.chunk_size_feed_forward = config.chunk_size_feed_forward
         self.seq_len_dim = 1
+        self.is_decoder = False
         self.attention = BertSelfAttention(config)
         self.attn_dense = nn.Linear(config.hidden_size, config.hidden_size)
         self.attn_dropout = nn.Dropout(config.hidden_dropout_prob)
