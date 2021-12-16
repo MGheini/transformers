@@ -1,3 +1,4 @@
+import math
 import inspect
 from typing import Callable
 
@@ -266,7 +267,7 @@ class RTGEmbeddings(nn.Module):
     def __init__(self, config, layernorm_embed=False):
         super().__init__()
         self.layernorm_embed = layernorm_embed
-        self.hidden_zize = config.hidden_size
+        self.hidden_size = config.hidden_size
 
         self.word_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, padding_idx=config.pad_token_id)
         self.position_embeddings = nn.Embedding(config.max_position_embeddings, config.hidden_size)
@@ -314,7 +315,7 @@ class RTGEmbeddings(nn.Module):
                 token_type_ids = torch.zeros(input_shape, dtype=torch.long, device=self.position_ids.device)
 
         if inputs_embeds is None:
-            inputs_embeds = self.word_embeddings(input_ids)
+            inputs_embeds = self.word_embeddings(input_ids) * math.sqrt(self.hidden_size)
         token_type_embeddings = torch.zeros(input_shape[0], input_shape[1], self.hidden_zize, device=self.position_ids.device)
 
         embeddings = inputs_embeds + token_type_embeddings
