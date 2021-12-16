@@ -316,7 +316,7 @@ class RTGEmbeddings(nn.Module):
 
         if inputs_embeds is None:
             inputs_embeds = self.word_embeddings(input_ids) * math.sqrt(self.hidden_size)
-        token_type_embeddings = torch.zeros(input_shape[0], input_shape[1], self.hidden_zize, device=self.position_ids.device)
+        token_type_embeddings = torch.zeros(input_shape[0], input_shape[1], self.hidden_size, device=self.position_ids.device)
 
         embeddings = inputs_embeds + token_type_embeddings
         if self.position_embedding_type == "absolute":
