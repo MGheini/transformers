@@ -319,7 +319,7 @@ class RTGEncForSequenceClassification(BertPreTrainedModel):
         )
 
         bsz = outputs[0].shape[0]
-        pooled_output = self.sent_rpr_attn(self.sent_rpr_query.view(1, 1, self.config.hidden_size).expand(bsz, 1, 1),
+        pooled_output, _ = self.sent_rpr_attn(self.sent_rpr_query.view(1, 1, self.config.hidden_size).expand(bsz, 1, -1),
                                            outputs[0],
                                            outputs[0],
                                            1 - attention_mask)
