@@ -219,6 +219,17 @@ def get_polynomial_decay_schedule_with_warmup(
     return LambdaLR(optimizer, lr_lambda, last_epoch)
 
 
+def get_inverse_sqrt_schedule(optimizer: Optimizer, num_warmup_steps: int, last_epoch: int = -1):
+
+    def lr_lambda(current_step: int):
+        if current_step < num_warmup_steps:
+            return float(current_step) / float(max(1, num_warmup_steps))
+        else:
+            return num_warmup_steps ** 0.5 / current_step ** 0.5
+
+    return LambdaLR(optimizer, lr_lambda, last_epoch)
+
+
 TYPE_TO_SCHEDULER_FUNCTION = {
     SchedulerType.LINEAR: get_linear_schedule_with_warmup,
     SchedulerType.COSINE: get_cosine_schedule_with_warmup,
