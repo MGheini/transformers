@@ -350,7 +350,7 @@ class RTGEncForSequenceClassification(BertPreTrainedModel):
                 loss_fct = BCEWithLogitsLoss()
                 loss = loss_fct(logits, labels)
         if not return_dict:
-            output = (logits,) + outputs[2:]
+            output = (logits, pooled_output,) + outputs[2:]
             return ((loss,) + output) if loss is not None else output
 
         return SequenceClassifierOutput(
